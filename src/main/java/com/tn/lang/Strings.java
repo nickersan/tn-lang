@@ -6,7 +6,7 @@ public class Strings
 
   public static boolean isNullOrWhitespace(String s)
   {
-    return s == null || s.trim().length() == 0;
+    return s == null || s.trim().isEmpty();
   }
 
   public static String orElseEmpty(String s, boolean b)
