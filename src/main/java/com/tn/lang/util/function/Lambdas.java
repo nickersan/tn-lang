@@ -1,5 +1,6 @@
 package com.tn.lang.util.function;
 
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -9,6 +10,21 @@ public class Lambdas
   public static Throwable unwrapException(Throwable e)
   {
     return e instanceof WrappedException ? e.getCause() : e;
+  }
+
+  public static <T, U> BiConsumer<T, U> wrapBiConsumer(BiConsumerWithThrows<T, U, ?> biConsumerWithThrows)
+  {
+    return (t, u) ->
+    {
+      try
+      {
+        biConsumerWithThrows.accept(t, u);
+      }
+      catch (Throwable e)
+      {
+        throw new WrappedException(e);
+      }
+    };
   }
 
   public static <T> Consumer<T> wrapConsumer(ConsumerWithThrows<T, ?> consumerWithThrows)

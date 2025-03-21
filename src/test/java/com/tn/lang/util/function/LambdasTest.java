@@ -3,15 +3,48 @@ package com.tn.lang.util.function;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import static com.tn.lang.util.function.Lambdas.wrapBiConsumer;
 import static com.tn.lang.util.function.Lambdas.wrapConsumer;
 import static com.tn.lang.util.function.Lambdas.wrapSupplier;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.junit.jupiter.api.Test;
 
 class LambdasTest
 {
+  @Test
+  void testWrapBiConsumer()
+  {
+    String expected1 = "testing";
+    String expected2 = "123";
+    Map<String, String> values = new HashMap<>();
+    BiConsumerWithThrows<String, String, Exception> biConsumerWithThrows = values::put;
+
+    wrapBiConsumer(biConsumerWithThrows).accept(expected1, expected2);
+
+    assertEquals(expected2, values.get(expected1));
+  }
+
+  @Test
+  void testWrapBiConsumerWithException()
+  {
+    Exception expected = new Exception("testing");
+    BiConsumerWithThrows<String, String, Exception> biConsumerWithThrows = (t, u) -> { throw expected; };
+
+    try
+    {
+      wrapBiConsumer(biConsumerWithThrows).accept("abc", "123");
+      fail("Failed to rethrow");
+    }
+    catch (WrappedException e)
+    {
+      assertEquals(expected, e.getCause());
+    }
+  }
+
   @Test
   void testWrapConsumer()
   {
