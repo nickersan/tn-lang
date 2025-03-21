@@ -22,7 +22,8 @@ public class Lambdas
       }
       catch (Throwable e)
       {
-        throw new WrappedException(e);
+        if (e instanceof RuntimeException) throw (RuntimeException)e;
+        else throw new WrappedException(e);
       }
     };
   }
@@ -37,7 +38,8 @@ public class Lambdas
       }
       catch (Throwable e)
       {
-        throw new WrappedException(e);
+        if (e instanceof RuntimeException) throw (RuntimeException)e;
+        else throw new WrappedException(e);
       }
     };
   }
@@ -52,7 +54,8 @@ public class Lambdas
       }
       catch (Throwable e)
       {
-        throw new WrappedException(e);
+        if (e instanceof RuntimeException) throw (RuntimeException)e;
+        else throw new WrappedException(e);
       }
     };
   }
@@ -67,7 +70,8 @@ public class Lambdas
       }
       catch (Throwable e)
       {
-        throw new WrappedException(e);
+        if (e instanceof RuntimeException) throw (RuntimeException)e;
+        else throw new WrappedException(e);
       }
     };
   }
