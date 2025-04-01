@@ -51,4 +51,10 @@ class StringsTest
   {
     Assertions.assertEquals(EMPTY, Strings.orElseEmpty("test", false));
   }
+
+  @Test
+  void shouldRepeat()
+  {
+    Assertions.assertEquals("AxAxA", Strings.repeat("A", "x", 3));
+  }
 }
