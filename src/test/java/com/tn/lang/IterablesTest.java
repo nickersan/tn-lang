@@ -40,6 +40,19 @@ class IterablesTest
   }
 
   @Test
+  void shouldReturnSize()
+  {
+    assertEquals(3, Iterables.size(new ArrayIterable<>(1, 2, 3)));
+  }
+
+  @Test
+  void shouldReturnSizeWithList()
+  {
+    List<Integer> list = List.of(1, 2, 3);
+    assertEquals(list.size(), Iterables.size(list));
+  }
+
+  @Test
   void shouldReturnList()
   {
     assertEquals(List.of(1, 2, 3), Iterables.toList(new ArrayIterable<>(1, 2, 3)));
