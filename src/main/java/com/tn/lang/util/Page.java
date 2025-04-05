@@ -53,10 +53,12 @@ public class Page<T> implements Iterable<T>
   {
     if (other == null || getClass() != other.getClass()) return false;
 
+    //noinspection SuspiciousMethodCalls
     return number == ((Page<?>)other).number &&
       count == ((Page<?>)other).count &&
       size == ((Page<?>)other).size &&
-      Objects.equals(items, ((Page<?>)other).items);
+      items.size() == ((Page<?>)other).items.size() &&
+      items.containsAll(((Page<?>)other).items);
   }
 
   @Override
