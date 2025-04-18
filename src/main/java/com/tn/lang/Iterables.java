@@ -13,6 +13,11 @@ public class Iterables
     return iterable instanceof Collection ? ((Collection<?>)iterable).isEmpty() : iterable == null || !iterable.iterator().hasNext();
   }
 
+  public static boolean isNotEmpty(Iterable<?> iterable)
+  {
+    return !isEmpty(iterable);
+  }
+
   public static int size(Iterable<?> iterable)
   {
     if (iterable instanceof Collection) return ((Collection<?>)iterable).size();

@@ -40,6 +40,30 @@ class IterablesTest
   }
 
   @Test
+  void shouldReturnNotEmptyTrue()
+  {
+    assertTrue(Iterables.isNotEmpty(new ArrayIterable<>(1)));
+  }
+
+  @Test
+  void shouldReturnNotEmptyTrueWithCollection()
+  {
+    assertTrue(Iterables.isNotEmpty(List.of(1)));
+  }
+
+  @Test
+  void shouldReturnNotEmptyFalse()
+  {
+    assertFalse(Iterables.isNotEmpty(new ArrayIterable<>()));
+  }
+
+  @Test
+  void shouldReturnNotEmptyFalseWithCollection()
+  {
+    assertFalse(Iterables.isNotEmpty(emptyList()));
+  }
+
+  @Test
   void shouldReturnSize()
   {
     assertEquals(3, Iterables.size(new ArrayIterable<>(1, 2, 3)));
