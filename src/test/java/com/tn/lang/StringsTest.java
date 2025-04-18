@@ -30,6 +30,24 @@ class StringsTest
   }
 
   @Test
+  void shouldFalseWhenNull()
+  {
+    assertFalse(Strings.isNotNullOrWhitespace(null));
+  }
+
+  @Test
+  void shouldFalseWhenEmpty()
+  {
+    assertFalse(Strings.isNotNullOrWhitespace(EMPTY));
+  }
+
+  @Test
+  void shouldFalseWhenWhitespace()
+  {
+    assertFalse(Strings.isNotNullOrWhitespace(" "));
+  }
+
+  @Test
   void shouldFalseWhenContainsCharacters()
   {
     assertFalse(Strings.isNullOrWhitespace("A"));

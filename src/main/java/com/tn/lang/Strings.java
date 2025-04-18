@@ -9,6 +9,11 @@ public class Strings
     return s == null || s.trim().isEmpty();
   }
 
+  public static boolean isNotNullOrWhitespace(String s)
+  {
+    return !isNullOrWhitespace(s);
+  }
+
   public static String orElseEmpty(String s, boolean b)
   {
     return b ? s : EMPTY;
