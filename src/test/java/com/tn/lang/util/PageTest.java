@@ -15,14 +15,14 @@ class PageTest
   {
     List<Integer> items = List.of(1, 2, 3);
     int number = 1;
-    int count = 10;
-    int size = 5;
-    Page<Integer> page = new Page<>(items, number, count, size);
+    int count = 2;
+    int totalItems = 5;
+    Page<Integer> page = new Page<>(items, number, count, totalItems);
 
     assertArrayEquals(items.toArray(Integer[]::new), page.items().toArray(Integer[]::new));
     assertEquals(number, page.number());
     assertEquals(count, page.count());
-    assertEquals(size, page.size());
+    assertEquals(totalItems, page.totalItems());
     assertIterableEquals(items, page);
   }
 }

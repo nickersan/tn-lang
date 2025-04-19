@@ -7,19 +7,37 @@ import java.util.Iterator;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Page<T> implements Iterable<T>
 {
+  @JsonProperty
   private final Collection<T> items;
+  @JsonProperty
   private final int number;
+  @JsonProperty
   private final int count;
-  private final int size;
+  @JsonProperty
+  private final int totalItems;
 
-  public Page(@Nonnull Collection<T> items, int number, int count, int size)
+  @JsonCreator
+  public Page(
+    @Nonnull
+    @JsonProperty("items")
+    Collection<T> items,
+    @JsonProperty("number")
+    int number,
+    @JsonProperty("count")
+    int count,
+    @JsonProperty("totalItems")
+    int totalItems
+  )
   {
     this.items = unmodifiableCollection(items);
     this.number = number;
     this.count = count;
-    this.size = size;
+    this.totalItems = totalItems;
   }
 
   public Collection<T> items()
@@ -37,9 +55,9 @@ public class Page<T> implements Iterable<T>
     return count;
   }
 
-  public int size()
+  public int totalItems()
   {
-    return size;
+    return totalItems;
   }
 
   @Override
@@ -56,7 +74,7 @@ public class Page<T> implements Iterable<T>
     //noinspection SuspiciousMethodCalls
     return number == ((Page<?>)other).number &&
       count == ((Page<?>)other).count &&
-      size == ((Page<?>)other).size &&
+      totalItems == ((Page<?>)other).totalItems &&
       items.size() == ((Page<?>)other).items.size() &&
       items.containsAll(((Page<?>)other).items);
   }
@@ -64,7 +82,7 @@ public class Page<T> implements Iterable<T>
   @Override
   public int hashCode()
   {
-    return Objects.hash(number, count, size);
+    return Objects.hash(number, count, totalItems);
   }
 
   @Override
@@ -72,7 +90,7 @@ public class Page<T> implements Iterable<T>
   {
     return "Page{number=" + number +
       ", count=" + count +
-      ", size=" + size +
+      ", totalItems=" + totalItems +
       ", items=" + items +
     "}";
   }
