@@ -36,7 +36,7 @@ public class Iterables
     return size;
   }
 
-  public static <T> List<T> toList(Iterable<T> iterable)
+  public static <T> List<T> asList(Iterable<T> iterable)
   {
     return iterable instanceof List ? (List<T>)iterable : stream(iterable.spliterator(), false).toList();
   }

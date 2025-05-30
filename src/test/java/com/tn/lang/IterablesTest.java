@@ -79,14 +79,14 @@ class IterablesTest
   @Test
   void shouldReturnList()
   {
-    assertEquals(List.of(1, 2, 3), Iterables.toList(new ArrayIterable<>(1, 2, 3)));
+    assertEquals(List.of(1, 2, 3), Iterables.asList(new ArrayIterable<>(1, 2, 3)));
   }
 
   @Test
   void shouldReturnListWithList()
   {
     List<Integer> list = List.of(1, 2, 3);
-    assertSame(list, Iterables.toList(list));
+    assertSame(list, Iterables.asList(list));
   }
 
   private static class ArrayIterable<T> implements Iterable<T>
