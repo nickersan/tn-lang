@@ -2,6 +2,7 @@ package com.tn.lang;
 
 import static java.util.Collections.emptyList;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import javax.annotation.Nonnull;
 
 import org.junit.jupiter.api.Test;
@@ -77,6 +79,12 @@ class IterablesTest
   }
 
   @Test
+  void shouldReturnArray()
+  {
+    assertArrayEquals(new Integer[]{ 1, 2, 3 }, Iterables.asArray(new ArrayIterable<>(1, 2, 3), Integer[]::new));
+  }
+
+  @Test
   void shouldReturnList()
   {
     assertEquals(List.of(1, 2, 3), Iterables.asList(new ArrayIterable<>(1, 2, 3)));
@@ -87,6 +95,19 @@ class IterablesTest
   {
     List<Integer> list = List.of(1, 2, 3);
     assertSame(list, Iterables.asList(list));
+  }
+
+  @Test
+  void shouldReturnSet()
+  {
+    assertEquals(Set.of(1, 2, 3), Iterables.asSet(new ArrayIterable<>(1, 2, 3)));
+  }
+
+  @Test
+  void shouldReturnSetWithSet()
+  {
+    Set<Integer> set = Set.of(1, 2, 3);
+    assertSame(set, Iterables.asSet(set));
   }
 
   private static class ArrayIterable<T> implements Iterable<T>

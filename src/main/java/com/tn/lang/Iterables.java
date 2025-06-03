@@ -1,10 +1,13 @@
 package com.tn.lang;
 
+import static java.util.stream.Collectors.toSet;
 import static java.util.stream.StreamSupport.stream;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import java.util.function.IntFunction;
 
 public class Iterables
 {
@@ -36,8 +39,18 @@ public class Iterables
     return size;
   }
 
+  public static <T> T[] asArray(Iterable<T> iterable, IntFunction<T[]> generator)
+  {
+    return stream(iterable.spliterator(), false).toArray(generator);
+  }
+
   public static <T> List<T> asList(Iterable<T> iterable)
   {
     return iterable instanceof List ? (List<T>)iterable : stream(iterable.spliterator(), false).toList();
+  }
+
+  public static <T> Set<T> asSet(Iterable<T> iterable)
+  {
+    return iterable instanceof Set ? (Set<T>)iterable : stream(iterable.spliterator(), false).collect(toSet());
   }
 }
