@@ -14,15 +14,34 @@ class PageTest
   void shouldInitialize()
   {
     List<Integer> items = List.of(1, 2, 3);
-    int number = 1;
-    int count = 2;
+    int number = 0;
+    int size = 3;
     int totalItems = 5;
-    Page<Integer> page = new Page<>(items, number, count, totalItems);
+    int totalPages = 2;
+
+    Page<Integer> page = new Page<>(items, number, size, totalItems, totalPages);
 
     assertArrayEquals(items.toArray(Integer[]::new), page.items().toArray(Integer[]::new));
     assertEquals(number, page.number());
-    assertEquals(count, page.count());
+    assertEquals(size, page.size());
     assertEquals(totalItems, page.totalItems());
+    assertEquals(totalPages, page.totalPages());
     assertIterableEquals(items, page);
+  }
+
+  @Test
+  void shouldBeEqual()
+  {
+    List<Integer> items = List.of(1, 2, 3);
+    int number = 0;
+    int size = 3;
+    int totalItems = 5;
+    int totalPages = 2;
+
+    Page<Integer> page1 = new Page<>(items, number, size, totalItems, totalPages);
+    Page<Integer> page2 = new Page<>(items, number, size, totalItems, totalPages);
+
+    assertEquals(page1, page2);
+    assertEquals(page1.hashCode(), page2.hashCode());
   }
 }

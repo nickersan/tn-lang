@@ -17,9 +17,11 @@ public class Page<T> implements Iterable<T>
   @JsonProperty
   private final int number;
   @JsonProperty
-  private final int count;
+  private final int size;
   @JsonProperty
-  private final int totalItems;
+  private final long totalItems;
+  @JsonProperty
+  private final int totalPages;
 
   @JsonCreator
   public Page(
@@ -28,16 +30,19 @@ public class Page<T> implements Iterable<T>
     Collection<T> items,
     @JsonProperty("number")
     int number,
-    @JsonProperty("count")
-    int count,
+    @JsonProperty("size")
+    int size,
     @JsonProperty("totalItems")
-    int totalItems
+    long totalItems,
+    @JsonProperty("totalPages")
+    int totalPages
   )
   {
     this.items = unmodifiableCollection(items);
     this.number = number;
-    this.count = count;
+    this.size = size;
     this.totalItems = totalItems;
+    this.totalPages = totalPages;
   }
 
   public Collection<T> items()
@@ -50,14 +55,19 @@ public class Page<T> implements Iterable<T>
     return number;
   }
 
-  public int count()
+  public int size()
   {
-    return count;
+    return size;
   }
 
-  public int totalItems()
+  public long totalItems()
   {
     return totalItems;
+  }
+
+  public long totalPages()
+  {
+    return totalPages;
   }
 
   @Override
@@ -73,8 +83,9 @@ public class Page<T> implements Iterable<T>
 
     //noinspection SuspiciousMethodCalls
     return number == ((Page<?>)other).number &&
-      count == ((Page<?>)other).count &&
+      size == ((Page<?>)other).size &&
       totalItems == ((Page<?>)other).totalItems &&
+      totalPages == ((Page<?>)other).totalPages &&
       items.size() == ((Page<?>)other).items.size() &&
       items.containsAll(((Page<?>)other).items);
   }
@@ -82,15 +93,16 @@ public class Page<T> implements Iterable<T>
   @Override
   public int hashCode()
   {
-    return Objects.hash(number, count, totalItems);
+    return Objects.hash(number, size, totalItems, totalPages);
   }
 
   @Override
   public String toString()
   {
     return "Page{number=" + number +
-      ", count=" + count +
+      ", size=" + size +
       ", totalItems=" + totalItems +
+      ", totalPages=" + totalPages +
       ", items=" + items +
     "}";
   }
