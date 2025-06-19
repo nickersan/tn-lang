@@ -11,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import javax.annotation.Nonnull;
+
+import jakarta.annotation.Nonnull;
 
 import org.junit.jupiter.api.Test;
 

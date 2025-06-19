@@ -5,7 +5,8 @@ import static java.util.Collections.unmodifiableCollection;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Objects;
-import javax.annotation.Nonnull;
+
+import jakarta.annotation.Nonnull;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
