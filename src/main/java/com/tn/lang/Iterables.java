@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.function.IntFunction;
+import java.util.stream.Stream;
 
 public class Iterables
 {
@@ -41,16 +42,21 @@ public class Iterables
 
   public static <T> T[] asArray(Iterable<T> iterable, IntFunction<T[]> generator)
   {
-    return stream(iterable.spliterator(), false).toArray(generator);
+    return asStream(iterable).toArray(generator);
   }
 
   public static <T> List<T> asList(Iterable<T> iterable)
   {
-    return iterable instanceof List ? (List<T>)iterable : stream(iterable.spliterator(), false).toList();
+    return iterable instanceof List ? (List<T>)iterable : asStream(iterable).toList();
   }
 
   public static <T> Set<T> asSet(Iterable<T> iterable)
   {
-    return iterable instanceof Set ? (Set<T>)iterable : stream(iterable.spliterator(), false).collect(toSet());
+    return iterable instanceof Set ? (Set<T>)iterable : asStream(iterable).collect(toSet());
+  }
+
+  public static <T> Stream<T> asStream(Iterable<T> iterable)
+  {
+    return stream(iterable.spliterator(), false);
   }
 }
