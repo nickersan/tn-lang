@@ -11,7 +11,7 @@
   <parent>
     <groupId>com.tn</groupId>
     <artifactId>tn-parent</artifactId>
-    <version>0.0.01-SNAPSHOT</version>
+    <version>1.0.00-SNAPSHOT</version>
   </parent>
 
   <artifactId>tn-lang</artifactId>
