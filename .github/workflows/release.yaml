@@ -1,0 +1,38 @@
+name: release
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - closed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Release
+        env:
+          GITHUB_USERNAME: ${{ github.username }}
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "nickersan"
+          git config --global user.email "nick.holt@btinternet.com"
+          mvn -Dusername=$GITHUB_USERNAME -Dpassword=$GITHUB_TOKEN --batch-mode release:prepare release:perform
+        
