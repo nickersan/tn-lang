@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/nickersan/tn-lang/compare/v1.0.0...v1.1.0) (2025-10-04)
+
+
+### Features
+
+* Adding utilities needed for time-series data. ([0434c24](https://github.com/nickersan/tn-lang/commit/0434c241618165d2dccdd59e7187676d43acfead))
+
 ## 1.0.0 (2025-07-19)
 
 
