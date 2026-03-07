@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/nickersan/tn-lang/compare/v1.1.0...v1.2.0) (2026-03-07)
+
+
+### Features
+
+* Release 1.2.0 ([#7](https://github.com/nickersan/tn-lang/issues/7)) ([fdceee7](https://github.com/nickersan/tn-lang/commit/fdceee7a7d13dceada4cb501ccfb9a054669ce94))
+
 ## [1.1.0](https://github.com/nickersan/tn-lang/compare/v1.0.0...v1.1.0) (2025-10-04)
 
 
