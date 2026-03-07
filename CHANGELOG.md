@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/nickersan/tn-lang/compare/v1.2.0...v1.3.0) (2026-03-07)
+
+
+### Features
+
+* adding sorting collectors. ([#10](https://github.com/nickersan/tn-lang/issues/10)) ([2056dcf](https://github.com/nickersan/tn-lang/commit/2056dcfdaa332e6ff5e10e63e23680f16c7d47f9))
+
 ## [1.2.0](https://github.com/nickersan/tn-lang/compare/v1.1.0...v1.2.0) (2026-03-07)
 
 
